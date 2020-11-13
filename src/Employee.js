@@ -2,7 +2,7 @@ const oneDay = 24 * 60 * 60 * 1000; // hours * minutes * seconds * milliseconds 
 
 class Employees {
 
-    longestWorkingPair = [];
+    longestWorkingPairs = [];
     employeeList = [];
 
     constructor(data) {
@@ -12,6 +12,7 @@ class Employees {
     handleData() {
         let emplObjArr = [];
 
+        // Format the data to Object Array for easier manipulation
         this.employeeList.forEach(employee => {
           let employeeArr = employee.split(', ');
 
@@ -38,12 +39,17 @@ class Employees {
 
         // Cycle through all grouped objects to check for pairs working at the same period
         Object.keys(groupByProject).forEach(project => {
-          if(groupByProject[project].length >= 2){
+
+            // if there are 2 or more employees on the same project it will check for overlaping periods
+            if(groupByProject[project].length >= 2){
+
+            // Nested loops for checking all possible combinations
             for(let i = 0; i < groupByProject[project].length; i++){
               for(let j = i + 1; j < groupByProject[project].length; j++){
+
+                // The two employees have overlaping period of time working on the same project and are added to the list
                 if(this.checkIfWorkedTogether(groupByProject[project][i], groupByProject[project][j])){
-                  // The two employees have overlaping period of time working on the same project and are added to the list
-                  this.longestWorkingPair.push({
+                  this.longestWorkingPairs.push({
                     'empID1': groupByProject[project][i].empID,
                     'empID2': groupByProject[project][j].empID,
                     'projectID': project,
@@ -55,7 +61,9 @@ class Employees {
           }
         })
 
-        this.longestWorkingPair.sort(function(a, b) {
+        // Sorts the list in descending order based on 'daysWorked'
+        // For ascending order swap a and b values in return
+        this.longestWorkingPairs.sort(function(a, b) {
             return b.daysWorked - a.daysWorked;
         })
 
@@ -107,7 +115,7 @@ class Employees {
     }
 
     showResultInTable(){
-        console.table(this.longestWorkingPair[0]);
+        console.table(this.longestWorkingPairs[0]);
     }
 
     checkIfDateIsValid(date) {

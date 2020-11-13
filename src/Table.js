@@ -5,7 +5,6 @@ function EmployeeTable(props) {
   const [tableBody, setTableBody] = useState();
 
   useEffect(() => {
-    console.log(props.data);
     setTableBody(generateTableBody(props.data));
   }, props.data);;
 

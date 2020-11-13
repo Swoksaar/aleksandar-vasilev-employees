@@ -12,8 +12,8 @@ function App() {
     if(fileContent.length) {
       const employeeList = new Employee(fileContent.split('\r\n'));
       employeeList.handleData();
-      console.log(employeeList);
-      setEmployeeData(employeeList.longestWorkingPair);
+
+      setEmployeeData(employeeList.longestWorkingPairs);
       employeeList.showResultInTable();
     }
   };
