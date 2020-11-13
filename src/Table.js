@@ -3,13 +3,16 @@ import './Table.css';
 
 function EmployeeTable(props) {
   const [tableBody, setTableBody] = useState();
+  const [tableData] = useState(props.data)
 
   useEffect(() => {
-    setTableBody(generateTableBody(props.data));
-  }, props.data);;
+    setTableBody(generateTableBody(tableData));
+  }, [tableData]);;
 
 
   const generateTableBody = (data) => {
+    if(!data[0])
+      return;
 
     /**
      * This one shows only the longest working pair
