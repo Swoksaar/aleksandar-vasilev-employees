@@ -9,7 +9,7 @@ function App() {
   const handleFileReader = (e) => {
     const fileContent = fileReader.result;
 
-    if(fileContent.length) {
+    if (fileContent.length) {
       const employeeList = new Employee(fileContent.split('\r\n'));
       employeeList.handleData();
 
@@ -30,11 +30,11 @@ function App() {
         type="file"
         onChange={e => handleFileChosen(e.target.files[0])}
       />
-      <h1 style={{textAlign: 'center', paddingBottom: '10px'}}>Longest working pair of Employees</h1>
+      <h1 style={{ textAlign: 'center', paddingBottom: '10px' }}>Longest working pair of Employees</h1>
       {employeeData ?
         <EmployeeTable data={employeeData} />
-      :
-        <p style={{textAlign: 'center', paddingBottom: '10px'}}>No data about employees</p>
+        :
+        <p style={{ textAlign: 'center', paddingBottom: '10px' }}>No data about employees</p>
       }
     </div>
   );
